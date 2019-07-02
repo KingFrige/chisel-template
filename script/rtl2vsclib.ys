@@ -1,0 +1,29 @@
+# read design
+read_verilog rtl/GCD.v
+
+# elaborate design hierarchy
+hierarchy -check -top GCD
+
+# the high-level stuff
+write_verilog syn/synth.v
+
+# mapping to internal cell library
+proc; opt; fsm; opt; memory; opt
+
+techmap; opt
+
+write_verilog syn/synth_opt.v
+
+# mapping flip-flops to vsclib013.lib
+dfflibmap -liberty lib/vsclib013.lib
+
+# mapping logic to vsclib013.lib
+abc -liberty lib/vsclib013.lib
+
+# cleanup
+clean
+
+# write synthesized design
+write_verilog syn/synth_vsclib.v
+write_blif syn/synth_blif.blif
+
