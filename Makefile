@@ -2,6 +2,27 @@ SBT ?= sbt
 
 # Generate Verilog code
 help:
+	@echo ""
+	@echo "run-help"
+	@echo "     look test help"
+	@echo ""
+	@echo "gen-vcd"
+	@echo "     genarate VCD file"
+	@echo ""
+	@echo "verilator-sim"
+	@echo "     use verilator simulation"
+	@echo ""
+	@echo "wave-view"
+	@echo "     use gtkwave debug wave"
+	@echo ""
+	@echo "synth"
+	@echo "     use yosys synthesize verilog"
+	@echo ""
+	@echo "clean"
+	@echo "     delect intermediate data"
+	@echo ""
+
+run-help:
 	$(SBT) 'test:runMain gcd.GCDMain --help'
 
 gen-vcd:
