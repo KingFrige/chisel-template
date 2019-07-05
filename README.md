@@ -104,6 +104,38 @@ To run the simulation and suppress the generation of a VCD output file:
 sbt 'test:runMain gcd.GCDMain --generate-vcd-output off'
 ```
 
+## make help
+```
+make help
+```
+```
+run-help
+     look test help
+
+gen-vcd
+     genarate VCD file
+
+verilator-sim
+     use verilator simulation
+
+wave-view
+     use gtkwave debug wave
+
+synth
+     use yosys synthesize verilog
+
+clean
+     delect intermediate data
+```
+
+### add synthesize function
+```
+make synth
+```
+
+
+
+
 ## Development/Bug Fixes
 This is the release version of chisel-template. If you have bug fixes or
 changes you would like to see incorporated in this repo, please checkout
