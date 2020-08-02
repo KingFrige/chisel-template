@@ -31,11 +31,13 @@ gen-vcd:
 verilator-sim:
 	$(SBT) 'test:runMain gcd.GCDMain --backend-name verilator'
 
-wave-view: gen-vcd
-	gtkwave test_run_dir/gcd.GCDMain2061991994/GCD.vcd
+vcdFile := $(shell ls -lt test_run_dir/*/* | grep GCD.vcd | head -n 1 | awk '{print $$9}')
+wave-view: gen-vcd $(vcdFile)
+	gtkwave ${vcdFile}
 
-synth: verilator-sim
-	cp test_run_dir/gcd.GCDMain2061991994/*.v rtl/
+verilogFile := $(shell ls -lt test_run_dir/*/* | grep GCD.v$$ | head -n 1 | awk '{print $$9}')
+synth: $(verilogFile)
+	cp ${verilogFile} rtl/
 	yosys script/rtl2vsclib.ys
 
 clean:
